@@ -1,0 +1,27 @@
+{
+    "name": "cohete/ddd",
+    "description": "Opinionated DDD building blocks for Cohete",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2",
+        "ramsey/uuid": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cohete\\DDD\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cohete\\DDD\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pascual Munoz",
+            "homepage": "https://pascualmg.dev"
+        }
+    ],
+    "minimum-stability": "stable"
+}
