@@ -6,7 +6,7 @@ use Stringable;
 
 class StringValueObject implements Stringable
 {
-    protected function __construct(public readonly string $value)
+    final protected function __construct(public readonly string $value)
     {
     }
 
@@ -27,7 +27,7 @@ class StringValueObject implements Stringable
 
     public static function assertMaxLength(int $maxLength, string $value): void
     {
-        $currLength = strlen($value);
+        $currLength = mb_strlen($value);
 
         if ($currLength > $maxLength) {
             throw new \InvalidArgumentException(
@@ -41,6 +41,9 @@ class StringValueObject implements Stringable
         }
     }
 
+    /**
+     * @phpstan-assert string $value
+     */
     public static function assertNotNull(?string $value): void
     {
         if ($value === null) {
@@ -53,9 +56,12 @@ class StringValueObject implements Stringable
         }
     }
 
+    /**
+     * @phpstan-assert !empty $value
+     */
     public static function assertNotEmpty(?string $value): void
     {
-        if (empty(trim($value))) {
+        if ($value === null || empty(trim($value))) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Value cannot be empty in %s",

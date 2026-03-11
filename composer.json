@@ -23,5 +23,11 @@
             "homepage": "https://pascualmg.dev"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpstan/phpstan": "^2.1"
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse"
+    }
 }

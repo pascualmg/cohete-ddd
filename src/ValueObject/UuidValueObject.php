@@ -7,7 +7,7 @@ use Stringable;
 
 class UuidValueObject implements Stringable
 {
-    private function __construct(
+    final private function __construct(
         public readonly string $value
     ) {
     }
