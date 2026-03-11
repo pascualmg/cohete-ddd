@@ -23,5 +23,8 @@
             "homepage": "https://pascualmg.dev"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^10.4"
+    }
 }
