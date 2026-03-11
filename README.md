@@ -1,6 +1,6 @@
 # cohete/ddd
 
-[![CI](https://github.com/cohete/ddd/actions/workflows/ci.yml/badge.svg)](https://github.com/cohete/ddd/actions/workflows/ci.yml)
+[![CI](https://github.com/pascualmg/cohete-ddd/actions/workflows/ci.yml/badge.svg)](https://github.com/pascualmg/cohete-ddd/actions/workflows/ci.yml)
 
 Opinionated DDD building blocks for Cohete.
 

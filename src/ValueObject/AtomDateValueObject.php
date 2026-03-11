@@ -6,14 +6,14 @@ class AtomDateValueObject extends StringValueObject
 {
     public static function from(?string $value = null): static
     {
-        parent::assertNotNull($value);
-        parent::assertNotEmpty($value);
+        static::assertNotNull($value);
+        static::assertNotEmpty($value);
 
-        self::assertHasCorrectDatetimeInterfaceAtomFormat($value);
+        static::assertHasCorrectDatetimeInterfaceAtomFormat($value);
         return parent::from($value);
     }
 
-    private static function assertHasCorrectDatetimeInterfaceAtomFormat(string $value): void
+    protected static function assertHasCorrectDatetimeInterfaceAtomFormat(string $value): void
     {
         if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(.\d+)?(Z|([+\-])\d{2}:\d{2})$/', $value)) {
             throw new \InvalidArgumentException(

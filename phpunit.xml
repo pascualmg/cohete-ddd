@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         cacheDirectory=".phpunit.cache"
-         executionOrder="depends,defects"
-         requireCoverageMetadata="true"
-         beStrictAboutCoverageMetadata="true"
-         beStrictAboutOutputDuringTests="true"
-         failOnRisky="true"
-         failOnWarning="true"
-         failOnNotice="true"
-         failOnDeprecation="true"
-         failOnPhpunitDeprecation="true">
+         colors="true"
+         cacheDirectory=".phpunit.cache">
     <testsuites>
-        <testsuite name="default">
-            <directory>tests</directory>
+        <testsuite name="ValueObject Test Suite">
+            <directory>tests/ValueObject</directory>
         </testsuite>
     </testsuites>
-
-    <source>
-        <include>
-            <directory>src</directory>
-        </include>
-    </source>
 </phpunit>
