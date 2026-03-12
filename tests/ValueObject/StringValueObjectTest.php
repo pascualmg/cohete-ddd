@@ -10,6 +10,10 @@ class TestStringVO extends StringValueObject
 {
 }
 
+class AnotherStringVO extends StringValueObject
+{
+}
+
 class StringValueObjectTest extends TestCase
 {
     public function testFromCreatesInstanceWithValue(): void
@@ -44,10 +48,44 @@ class StringValueObjectTest extends TestCase
         $this->assertEquals($value, (string)$vo);
     }
 
+    public function testEqualsSameValueSameType(): void
+    {
+        $vo1 = TestStringVO::from("hello");
+        $vo2 = TestStringVO::from("hello");
+        $this->assertTrue($vo1->equals($vo2));
+    }
+
+    public function testEqualsDifferentValue(): void
+    {
+        $vo1 = TestStringVO::from("hello");
+        $vo2 = TestStringVO::from("world");
+        $this->assertFalse($vo1->equals($vo2));
+    }
+
+    public function testEqualsDifferentTypeSameValue(): void
+    {
+        $vo1 = TestStringVO::from("hello");
+        $vo2 = AnotherStringVO::from("hello");
+        $this->assertFalse($vo1->equals($vo2));
+    }
+
+    public function testAssertMinLengthPassesWhenMet(): void
+    {
+        TestStringVO::assertMinLength(3, "abc");
+        $this->assertTrue(true);
+    }
+
+    public function testAssertMinLengthThrowsWhenNotMet(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Min length 5 not reached (2 chars)");
+        TestStringVO::assertMinLength(5, "ab");
+    }
+
     public function testAssertMaxLengthPassesWhenWithinLimit(): void
     {
         TestStringVO::assertMaxLength(10, "12345");
-        $this->assertTrue(true); // If no exception thrown, it passes
+        $this->assertTrue(true);
     }
 
     public function testAssertMaxLengthThrowsExceptionWhenExceeded(): void
