@@ -23,6 +23,11 @@ class UuidValueObject implements Stringable
         return new static(RamseyUuid::uuid4()->toString());
     }
 
+    public function equals(self $other): bool
+    {
+        return $this->value === $other->value && static::class === $other::class;
+    }
+
     public function __toString(): string
     {
         return $this->value;

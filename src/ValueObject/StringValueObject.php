@@ -4,7 +4,7 @@ namespace Cohete\DDD\ValueObject;
 
 use Stringable;
 
-class StringValueObject implements Stringable
+abstract class StringValueObject implements Stringable
 {
     final protected function __construct(public readonly string $value)
     {
@@ -15,6 +15,11 @@ class StringValueObject implements Stringable
         return new static($value ?? "");
     }
 
+    public function equals(self $other): bool
+    {
+        return $this->value === $other->value && static::class === $other::class;
+    }
+
     public function isEmpty(): bool
     {
         return $this->value === "";
@@ -23,6 +28,22 @@ class StringValueObject implements Stringable
     public function __toString(): string
     {
         return $this->value;
+    }
+
+    public static function assertMinLength(int $minLength, string $value): void
+    {
+        $currLength = mb_strlen($value);
+
+        if ($currLength < $minLength) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Min length %d not reached (%d chars) in %s",
+                    $minLength,
+                    $currLength,
+                    static::class
+                )
+            );
+        }
     }
 
     public static function assertMaxLength(int $maxLength, string $value): void
